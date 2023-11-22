@@ -1,0 +1,2 @@
+docker pull hello-world:latest
+docker run hello-world:latest

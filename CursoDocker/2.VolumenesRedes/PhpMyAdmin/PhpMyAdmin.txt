@@ -1,0 +1,14 @@
+docker pull phpmyadmin
+docker run --name phpmyadmin -d --link mysql_db_server:db -p 8080:80 phpmyadmin
+docker run --name phpmyadmin -d -e PMA_HOST=dbhost -p 8081:80 phpmyadmin
+
+docker pull phpmyadmin:5.2-fpm-alpine
+docker run --name db-phpmyadmin -d --link mysql_db_server:db -p 8081:80 -v /some/local/directory/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php phpmyadmin:5.2-fpm-alpine
+docker run -dp 8081:80 `
+ --network my-network --network-alias mysql `
+ -v ./some/local/directory/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php `
+ -e MYSQL_ROOT_PASSWORD=my-super-pass `
+ -e MYSQL_USER=my-user `
+ -e MYSQL_PASSWORD=my-pass `
+ -e MYSQL_DATABASE=db `
+ phpmyadmin:5.2-fpm-alpine

@@ -1,0 +1,2 @@
+docker pull postgres:12.17
+docker run --name db-postgres -e POSTGRES_USER=myadmin -e POSTGRES_PASSWORD=Ejem23Postgres00 -v "$PWD/my-postgres.conf":/etc/postgresql/postgresql.conf -d postgres:12.17
